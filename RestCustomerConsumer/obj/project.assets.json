@@ -725,11 +725,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\source\\RestConsumerService\\RestCustomerConsumer\\RestCustomerConsumer.csproj",
+      "projectUniqueName": "D:\\source\\RestCustomerConsumer\\RestCustomerConsumer\\RestCustomerConsumer.csproj",
       "projectName": "RestCustomerConsumer",
-      "projectPath": "C:\\source\\RestConsumerService\\RestCustomerConsumer\\RestCustomerConsumer.csproj",
+      "projectPath": "D:\\source\\RestCustomerConsumer\\RestCustomerConsumer\\RestCustomerConsumer.csproj",
       "packagesPath": "C:\\Users\\Patrick\\.nuget\\packages\\",
-      "outputPath": "C:\\source\\RestConsumerService\\RestCustomerConsumer\\obj\\",
+      "outputPath": "D:\\source\\RestCustomerConsumer\\RestCustomerConsumer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
