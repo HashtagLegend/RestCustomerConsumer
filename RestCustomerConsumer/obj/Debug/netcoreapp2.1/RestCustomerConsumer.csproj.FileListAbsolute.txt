@@ -1,0 +1,10 @@
+C:\source\RestConsumerService\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.csproj.CoreCompileInputs.cache
+C:\source\RestConsumerService\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.AssemblyInfoInputs.cache
+C:\source\RestConsumerService\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.AssemblyInfo.cs
+C:\source\RestConsumerService\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.deps.json
+C:\source\RestConsumerService\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.runtimeconfig.json
+C:\source\RestConsumerService\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.runtimeconfig.dev.json
+C:\source\RestConsumerService\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.dll
+C:\source\RestConsumerService\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.pdb
+C:\source\RestConsumerService\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.dll
+C:\source\RestConsumerService\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.pdb
