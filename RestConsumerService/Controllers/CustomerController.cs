@@ -47,20 +47,20 @@ namespace RestConsumerService.Controllers
         //For at HttpResponseMessage fungere system.net.http tilføjes
         //For at bruge det i fiddler, skal der bare tilføjes en json body med alle properties.
         //POST: api/Customer
-        //[HttpPost]
-        //public HttpResponseMessage PostCustomer (Customer c)
-        //{
-        //    cList.Add(c);
-        //    return new HttpResponseMessage(System.Net.HttpStatusCode.Created);
-        //}
+        [HttpPost]
+        public HttpResponseMessage PostCustomer(Customer c)
+        {
+            cList.Add(c);
+            return new HttpResponseMessage(System.Net.HttpStatusCode.Created);
+        }
 
         //Den nemme måde at lave en post på, dog uden responsemessages
         // POST: api/Customer
-        [HttpPost]
-        public void Post([FromBody] Customer c)
-        {
-            cList.Add(c);
-        }
+        //[HttpPost]
+        //public void Post([FromBody] Customer c)
+        //{
+        //    cList.Add(c);
+        //}
 
         //// PUT: api/Customer/5
         //[HttpPut("{id}")]
@@ -73,7 +73,7 @@ namespace RestConsumerService.Controllers
         public HttpResponseMessage PutCustomer(Customer cust)
         {
             Customer customer = cList.Find(c => c.ID == cust.ID);
-
+            
             if (customer == null)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);

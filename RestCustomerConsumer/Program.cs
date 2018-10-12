@@ -13,7 +13,7 @@ namespace RestCustomerConsumer
     {
 
         //Jeg har tilføjet en kommentar
-        static string CustomersUri = "https://localhost:5001/api/customer/";
+        static string CustomersUri = "https://restcustomers3rvice.azurewebsites.net/api/customer/";
         static void Main(string[] args)
         {
             System.Threading.Thread.Sleep(10000);
@@ -25,9 +25,9 @@ namespace RestCustomerConsumer
 
             Console.WriteLine("Get: " + GetCustomerByid(2).Result);
 
-            Console.WriteLine("Post: " + PostCostumer(new Customer(4, "Theo", "Dyrman", 2016)).Result);
+            Console.WriteLine("Post: " + PostCostumer(new Customer(5, "Theo", "Dyrman", 2016)).Result);
             
-            Console.WriteLine("Put: " + PutCostumer(1, new Customer(5, "Fis", "Minister", 2016)).Result);
+            Console.WriteLine("Put: " + PutCostumer(new Customer(5, "Fis", "Minister", 2016)).Result);
 
             Console.WriteLine("Get: " + GetCustomerByid(1).Result);
 
@@ -72,13 +72,13 @@ namespace RestCustomerConsumer
             }
         }
 
-        public static async Task<string> PutCostumer(int id, Customer customer)
+        public static async Task<string> PutCostumer(Customer customer)
         {
             using (HttpClient client = new HttpClient())
             {
                 var jsonString = JsonConvert.SerializeObject(customer);
                 StringContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PutAsync(CustomersUri + id, content);
+                HttpResponseMessage response = await client.PutAsync(CustomersUri, content);
 
                 return response.ToString();
 
