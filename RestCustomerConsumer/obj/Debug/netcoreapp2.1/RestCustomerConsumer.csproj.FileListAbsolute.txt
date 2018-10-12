@@ -19,3 +19,14 @@ D:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\Rest
 D:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.AssemblyInfo.cs
 D:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.dll
 D:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.pdb
+C:\source\RestCustomerConsumer\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.deps.json
+C:\source\RestCustomerConsumer\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.runtimeconfig.json
+C:\source\RestCustomerConsumer\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.runtimeconfig.dev.json
+C:\source\RestCustomerConsumer\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.dll
+C:\source\RestCustomerConsumer\RestCustomerConsumer\bin\Debug\netcoreapp2.1\RestCustomerConsumer.pdb
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.csprojAssemblyReference.cache
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.csproj.CoreCompileInputs.cache
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.AssemblyInfoInputs.cache
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.AssemblyInfo.cs
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.dll
+C:\source\RestCustomerConsumer\RestCustomerConsumer\obj\Debug\netcoreapp2.1\RestCustomerConsumer.pdb

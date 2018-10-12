@@ -21,9 +21,12 @@ namespace RestCustomerConsumer.Model
 
         public Customer()
         {
-
+            
         }
 
-
+        public override string ToString()
+        {
+            return $"{nameof(ID)}: {ID}, {nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Year)}: {Year}";
+        }
     }
 }
