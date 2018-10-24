@@ -14,12 +14,13 @@ namespace RestConsumerService.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        public static int nextId = 0;
 
         private static List<Customer> cList = new List<Customer>()
         {
-            new Customer(1, "Patrick", "Ørum", 2018),
-            new Customer(2, "Frederik", "Wulff", 2017),
-            new Customer(3, "Hakan", "Aslan", 2016)
+            new Customer("Patrick", "Ørum", 2018),
+            new Customer("Frederik", "Wulff", 2017),
+            new Customer("Hakan", "Aslan", 2016)
         };
         
         // GET: api/Customer

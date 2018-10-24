@@ -31,6 +31,8 @@ namespace RestConsumerService
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,6 +53,14 @@ namespace RestConsumerService
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseCors(
+                options =>
+                {
+                    options.AllowAnyOrigin().AllowAnyMethod();
+                    // allow everything from anywhere
+                });
+
 
             app.UseMvc(routes =>
             {

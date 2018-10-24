@@ -94,3 +94,4 @@ C:\source\RestCustomerConsumer\RestConsumerService\obj\Debug\netcoreapp2.1\RestC
 C:\source\RestCustomerConsumer\RestConsumerService\obj\Debug\netcoreapp2.1\RestConsumerService.dll
 C:\source\RestCustomerConsumer\RestConsumerService\obj\Debug\netcoreapp2.1\RestConsumerService.pdb
 C:\source\RestCustomerConsumer\RestConsumerService\obj\Debug\netcoreapp2.1\RestConsumerService.csproj.CopyComplete
+D:\source\RestCustomerConsumer\RestConsumerService\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
