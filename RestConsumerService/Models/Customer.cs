@@ -15,7 +15,8 @@ namespace RestConsumerService.Models
                 
         public Customer(string firstName, string lastName, int year)
         {
-            this.ID = CustomerController.nextId++;
+            CustomerController.nextId++;
+            this.ID = CustomerController.nextId;
             FirstName = firstName;
             LastName = lastName;
             Year = year;

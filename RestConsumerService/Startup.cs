@@ -24,6 +24,8 @@ namespace RestConsumerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -31,7 +33,7 @@ namespace RestConsumerService
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddCors();
+            
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -51,16 +53,20 @@ namespace RestConsumerService
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseCors(
-                options =>
-                {
-                    options.AllowAnyOrigin().AllowAnyMethod();
-                    // allow everything from anywhere
-                });
+            options =>
+            {
+                //Allow requests from any origins(website that needs to use the service) and they can use all methods
+                options.AllowAnyOrigin().AllowAnyMethod();
 
+                //Allows requests from localhost:3000 - any other websites wont be allowed, (can be tested in postman)
+                options.WithOrigins("http://localhost:3000").AllowAnyMethod();
+                    
+            });
+
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
