@@ -58,10 +58,10 @@ namespace RestConsumerService
             options =>
             {
                 //Allow requests from any origins(website that needs to use the service) and they can use all methods
-                options.AllowAnyOrigin().AllowAnyMethod();
+                options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 
                 //Allows requests from localhost:3000 - any other websites wont be allowed, (can be tested in postman)
-                options.WithOrigins("http://localhost:3000").AllowAnyMethod();
+                //options.WithOrigins("http://localhost:3000").AllowAnyMethod();
                     
             });
 
