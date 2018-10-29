@@ -7,7 +7,7 @@ CREATE TABLE Customer
 	firstname VARCHAR(50) NOT NULL,
 	lastname VARCHAR(50) NOT NULL,
 	year INT NOT NULL
-	
 
 );
+
 
