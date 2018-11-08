@@ -12,7 +12,7 @@ namespace RestConsumerService.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Year { get; set; }
-                
+        
         public Customer(string firstName, string lastName, int year)
         {
             CustomerController.nextId++;

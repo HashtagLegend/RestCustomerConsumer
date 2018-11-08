@@ -18,11 +18,14 @@ namespace RestConsumerService.Controllers
     public class CustomerController : ControllerBase
     {
 
-
-
         public static int nextId = 0;
 
         private const string connectionString = "Server=tcp:custom3r.database.windows.net,1433;Initial Catalog=custom3rDB;Persist Security Info=False;User ID=hashtaglegend;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+        private const string SelectAllCustomers = "select id, firstname, lastname, year from dbo.Customer";
+        private const string InsertCustomer = "INSERT INTO dbo.Customer (firstname, lastname, year) VALUES (@firstname, @lastname, @year)";
+        private const string deleteStatement = "DELETE FROM dbo.Customer where id=@id";
+        private const string updateString ="UPDATE dbo.Customer set firstname=@firstname, lastname=@lastname, year=@year WHERE id=@id;";
 
 
         private static List<Customer> cList = new List<Customer>()
@@ -37,9 +40,7 @@ namespace RestConsumerService.Controllers
         public List<Customer> Get()
         {
             var result = new List<Customer>();
-            //Denne string er det sql query vi vil foretage
-            string sql = "select id, firstname, lastname, year from dbo.Customer";
-
+            
             //Laver en ny sql connection og giver connectionString som argument
             using (SqlConnection dbConnection = new SqlConnection(connectionString))
             {
@@ -47,7 +48,7 @@ namespace RestConsumerService.Controllers
                 dbConnection.Open();
 
                 //Det her er den sql command der skal udføres, den tager 2 parametre, sql query og connection
-                using (SqlCommand selectCommand = new SqlCommand(sql, dbConnection))
+                using (SqlCommand selectCommand = new SqlCommand(SelectAllCustomers, dbConnection))
                 {
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
@@ -136,16 +137,16 @@ namespace RestConsumerService.Controllers
         }
 
 
-
-        //For at HttpResponseMessage fungere system.net.http tilføjes
+        //For at HttpResponseMessage fungere skal system.net.http tilføjes
         //For at bruge det i fiddler, skal der bare tilføjes en json body med alle properties.
+
         //POST: api/Customer
         [HttpPost]
-        public HttpResponseMessage PostCustomer(Customer c)
-        {
-            cList.Add(c);
-            return new HttpResponseMessage(System.Net.HttpStatusCode.Created);
-        }
+        //public HttpResponseMessage PostCustomer(Customer c)
+        //{
+        //    cList.Add(c);
+        //    return new HttpResponseMessage(System.Net.HttpStatusCode.Created);
+        //}
 
         //Den nemme måde at lave en post på, dog uden responsemessages
         // POST: api/Customer
@@ -155,6 +156,25 @@ namespace RestConsumerService.Controllers
         //    cList.Add(c);
         //}
 
+
+        [HttpPost]
+
+        public int AddBook([FromBody] Customer cust)
+        {
+            using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+            {
+                databaseConnection.Open();
+                using (SqlCommand insertCommand = new SqlCommand(InsertCustomer, databaseConnection))
+                {
+                    insertCommand.Parameters.AddWithValue("@firstname", cust.FirstName);
+                    insertCommand.Parameters.AddWithValue("@lastname", cust.LastName);
+                    insertCommand.Parameters.AddWithValue("@year", cust.Year);
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    return rowsAffected;
+                }
+            }
+        }
+
         //// PUT: api/Customer/5
         //[HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
@@ -162,35 +182,70 @@ namespace RestConsumerService.Controllers
         //}
 
         //PUT: api/Customer
-        [HttpPut]
-        public HttpResponseMessage PutCustomer(Customer cust)
+        //[HttpPut]
+        //public HttpResponseMessage PutCustomer(Customer cust)
+        //{
+        //    Customer customer = cList.Find(c => c.ID == cust.ID);
+
+        //    if (customer == null)
+        //    {
+        //        return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+        //    }
+
+        //    customer.ID = cust.ID;
+        //    customer.FirstName = cust.FirstName;
+        //    customer.LastName = cust.LastName;
+        //    customer.Year = cust.Year;
+
+        //    return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        //}
+
+        [HttpPut("{id}")]
+
+        public int UpdateCustomer(int id, [FromBody] Customer cust)
         {
-            Customer customer = cList.Find(c => c.ID == cust.ID);
-            
-            if (customer == null)
+
+            using (SqlConnection databaseConnection = new SqlConnection(connectionString))
             {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+                databaseConnection.Open();
+                using (SqlCommand updateCommand = new SqlCommand(updateString, databaseConnection))
+                {
+                    updateCommand.Parameters.AddWithValue("@firstname", cust.FirstName);
+                    updateCommand.Parameters.AddWithValue("@lastname", cust.LastName);
+                    updateCommand.Parameters.AddWithValue("@year", cust.Year);
+                    updateCommand.Parameters.AddWithValue("@id", id);
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+                    return rowsAffected;
+                }
             }
-
-            customer.ID = cust.ID;
-            customer.FirstName = cust.FirstName;
-            customer.LastName = cust.LastName;
-            customer.Year = cust.Year;
-
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-
-
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}", Name = "Delete")]
-        public IEnumerable<Customer> DeleteCustomer(int id)
+        //[HttpDelete("{id}", Name = "Delete")]
+        //public IEnumerable<Customer> DeleteCustomer(int id)
+        //{
+        //    Customer customer = cList.Find(c => c.ID == id);
+        //    cList.Remove(customer);
+
+        //    return cList;
+        //}
+
+
+        [HttpDelete("{id}")]
+
+        public int DeleteCustomer(int id)
         {
-            Customer customer = cList.Find(c => c.ID == id);
-            cList.Remove(customer);
+            using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+            {
+                databaseConnection.Open();
+                using (SqlCommand insertCommand = new SqlCommand(deleteStatement, databaseConnection))
+                {
+                    insertCommand.Parameters.AddWithValue("@id", id);                
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    return rowsAffected;
 
-            return cList;
+                }
+            }
         }
-
     }
 }
