@@ -18,9 +18,11 @@ namespace RestConsumerService.Controllers
     public class CustomerController : ControllerBase
     {
 
+
+
         public static int nextId = 0;
 
-        private const string connectionString = "Data Source=(localdb)MSSQLLocalDB;Initial Catalog = CustomerDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private const string connectionString = "Server=tcp:custom3r.database.windows.net,1433;Initial Catalog=custom3rDB;Persist Security Info=False;User ID=hashtaglegend;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 
         private static List<Customer> cList = new List<Customer>()
@@ -36,7 +38,7 @@ namespace RestConsumerService.Controllers
         {
             var result = new List<Customer>();
             //Denne string er det sql query vi vil foretage
-            string sql = "select id, firstname, lastname, year";
+            string sql = "select id, firstname, lastname, year from dbo.Customer";
 
             //Laver en ny sql connection og giver connectionString som argument
             using (SqlConnection dbConnection = new SqlConnection(connectionString))
@@ -44,7 +46,7 @@ namespace RestConsumerService.Controllers
                 //Åbner forbindelsen til DB
                 dbConnection.Open();
 
-                //Det ehr er den sql command der skal udføres, den tager 2 parametre, sql query og connection
+                //Det her er den sql command der skal udføres, den tager 2 parametre, sql query og connection
                 using (SqlCommand selectCommand = new SqlCommand(sql, dbConnection))
                 {
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
@@ -64,38 +66,76 @@ namespace RestConsumerService.Controllers
                                 {
                                     ID = id,
                                     FirstName = firstname,
-                                    LastName =  lastname,
+                                    LastName = lastname,
                                     Year = year
                                 };
 
                                 result.Add(customer);
                             }
                         }
-
-
-                        
                     }
                 }
-
             }
             //Returning from static list
-            //return cList; 
             return result;
+            //return cList;
+
         }
 
 
         // GET: api/Customer/5
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult GetCustomer(int id)
-        {
-            var cust = cList.FirstOrDefault((c) => c.ID == id);
-            if(cust == null)
-            {
-                return NotFound();
-            }
+        //public IActionResult GetCustomer(int id)
+        //{
+        //    var cust = cList.FirstOrDefault((c) => c.ID == id);
+        //    if(cust == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(cust);
+        //}
 
-            return Ok(cust);
+        public Customer Get(int Id)
+        {
+            string sql = $"select id, firstname, lastname, year from dbo.Customer WHERE id = {Id}";
+            
+            using (SqlConnection dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(sql, dbConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string firstname = reader.GetString(1);
+                                string lastname = reader.GetString(2);
+                                int year = reader.GetInt32(3);
+
+                                var customer = new Customer
+                                {
+                                    ID = id,
+                                    FirstName = firstname,
+                                    LastName = lastname,
+                                    Year = year
+                                };
+
+                                return customer;
+                            }
+                        }
+                    }
+                }
+            }
+            //Returning from static list
+            return null;
+            //return cList;
+
         }
+
+
 
         //For at HttpResponseMessage fungere system.net.http tilføjes
         //For at bruge det i fiddler, skal der bare tilføjes en json body med alle properties.

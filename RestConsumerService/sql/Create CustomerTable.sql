@@ -1,4 +1,4 @@
-﻿USE CustomerDB
+﻿USE custom3rDB
 GO
 
 CREATE TABLE Customer
@@ -9,5 +9,4 @@ CREATE TABLE Customer
 	year INT NOT NULL
 
 );
-
-
+ 
